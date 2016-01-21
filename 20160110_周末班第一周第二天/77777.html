@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+   var n=0;
+    function a(){
+        var n=10;
+        function b(){
+            n++;
+            alert(n);
+        }
+        b();
+        return b;
+    }
+    var c=a();
+        c();
+    alert(n);
+    //    var num = 10;
+//    var obj = {num: 20};
+//    obj.fn = (function (num) {
+//        this.num = num * 3;
+//        num++;
+//        return function (n) {
+//            this.num += n;
+//            num++;
+//            console.log(num);//22
+//    }
+//    })(obj.num);
+//    var f = obj.fn;
+//    f(5);              //22
+//    obj.fn(10);    //23
+//    console.log(num, obj.num);    //65 30
+
+</script>
+
+</body>
+</html>
