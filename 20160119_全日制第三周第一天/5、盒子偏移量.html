@@ -86,7 +86,7 @@
         while (p) {
             //在标准的IE8浏览器中,我们不需要单独的加边框,因为在IE8中的offsetTop偏移量已经把边框算在内了
             if (navigator.userAgent.indexOf("MSIE 8.0") === -1) {
-                //->当前浏览器不是IE8
+                //->当前浏览器不是IE8//-1相当于不包含
                 t += p.clientTop;
                 l += p.clientLeft;
             }
