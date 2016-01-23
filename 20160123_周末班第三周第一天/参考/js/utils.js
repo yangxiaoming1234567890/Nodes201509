@@ -1,8 +1,13 @@
+/*
+ * utils class v1.0:The common methods used in our JS are included.
+ * by Team on 2016/01/20
+ */
 var utils = {
+    //listToArray:Converts an array of classes into an array
     listToArray: function (likeAry) {
         var ary = [];
         try {
-            ary = Array.prototype.slice.call(likeAry);
+            ary = Array.prototype.slice.call(likeAry, 0);
         } catch (e) {
             for (var i = 0; i < likeAry.length; i++) {
                 ary[ary.length] = likeAry[i];
@@ -10,12 +15,13 @@ var utils = {
         }
         return ary;
     },
+    //toJSON:Converts a string of JSON format to an object in the JSON format
     toJSON: function (str) {
         return "JSON" in window ? JSON.parse(str) : eval("(" + str + ")");
     }
 };
 
-//getCss:获取当前元素的任意样式值
+//getCss:Gets the style of the current element that is calculated by the browser
 utils.getCss = function (curEle, attr) {
     var val = reg = null;
     if ("getComputedStyle" in window) {
@@ -29,11 +35,11 @@ utils.getCss = function (curEle, attr) {
             val = curEle.currentStyle[attr];
         }
     }
-    reg = /^-?\d+(\.\d+)?(px|em|rem|pt)?$/;
+    reg = /^-?\d+(\.\d+)?(px|pt|em|rem)?$/;
     return reg.test(val) ? parseFloat(val) : val;
 };
 
-//offset:获取当前元素距离body的偏移距离(上/左)
+//offset:Gets the offset of the current element distance body
 utils.offset = function (curEle) {
     var t = curEle.offsetTop, l = curEle.offsetLeft, p = curEle.offsetParent;
     while (p) {
@@ -47,3 +53,5 @@ utils.offset = function (curEle) {
     }
     return {top: t, left: l};
 };
+
+//珠峰最新版DOM库的gitHub地址:https://github.com/zhufengpeixun/zhufengDom.git
