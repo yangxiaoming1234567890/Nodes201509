@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡组件</title>
+    <link type="text/css" rel="stylesheet" href="css/tab.css"/>
+</head>
+<body>
+<div class="tab">
+    <ul class="tabTitle">
+        <li class="select">电影</li>
+        <li>动漫</li>
+        <li>综艺</li>
+    </ul>
+    <div class="tabCon select">
+        <div><img src="img/10.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon">
+        <div><img src="img/9.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon">
+        <div><img src="img/8.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab">
+    <ul class="tabTitle">
+        <li>电影</li>
+        <li class="select">动漫</li>
+        <li>综艺</li>
+    </ul>
+    <div class="tabCon">
+        <div><img src="img/10.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon select">
+        <div><img src="img/9.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon">
+        <div><img src="img/8.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<div class="tab">
+    <ul class="tabTitle">
+        <li>电影</li>
+        <li>动漫</li>
+        <li class="select">综艺</li>
+    </ul>
+    <div class="tabCon">
+        <div><img src="img/10.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon">
+        <div><img src="img/9.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="tabCon select">
+        <div><img src="img/8.jpg"/></div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<!--
+    1、不能只操作一个,需要操作多个(class='tab'),所有需要把所有具有这个样式的都获取到 getElementsByClassName(在IE6~8下不兼容)
+
+    2、在获取每一个tab下的三个li和三个div,但是使用getElementsByTagName获取的是子子孙孙级的-我们需要一个只获取子集元素的方法children
+
+    3、假设我已经得到想要的三个li,我们免费课:不管点击的是哪一个,先让所有的都没有选中的样式,然后在让当前点击的有...但是我们可以让当前点击的有,然后再让兄弟元素没有--获取兄弟元素siblings
+
+    4、获取当前点击这个li的索引(getIndex)，然后在去三个div中找,让对应索引的div在原来的样式基础上增加一个select样式(addClass),然后在让兄弟div移除选中样式(removeClass)
+    ...
+-->
+
+<script type="text/javascript">
+    var oTabs = document.getElementsByClassName("tab");
+    for (var i = 0; i < oTabs.length; i++) {
+        if (i === 0) {
+            var oTab = oTabs[i];
+
+            var oLis = oTab.getElementsByTagName("li");
+            console.log(oLis);
+        }
+    }
+
+
+</script>
+
+
+</body>
+</html>
