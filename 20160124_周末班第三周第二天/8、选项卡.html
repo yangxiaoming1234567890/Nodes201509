@@ -182,52 +182,45 @@
 
 <script charset="utf-8" type="text/javascript" src="js/utils.min.js"></script>
 <script charset="utf-8" type="text/javascript">
-    //->我们首先让所有需要操作的选项卡最外面的div的样式都是tab,然后通过样式类名把三个选项卡都获取到
-    var oTabs = utils.getElementsByClass("tab");
+    ~function () {
+//        var oTabs = utils.getElementsByClass("tab");
+//        for (var i = 0; i < oTabs.length; i++) {
+//            var oTab = oTabs[i];
+//            var oTabUl = utils.children(oTab, "ul")[0];
+//            var oTabLis = utils.children(oTabUl);
+//            for (var k = 0; k < oTabLis.length; k++) {
+//                oTabLis[k].onclick = changeTab;
+//            }
+//        }
 
-    //->循环三个选项卡
-    for (var i = 0; i < oTabs.length; i++) {
-        var oTab = oTabs[i];
+        //事件委托实现点击绑定:我们把点击事件绑定给body,这样不管body中的哪一个元素点击了,都出触发body的click事件
+        document.body.onclick = function (e) {
+            //->e:事件对象
+            e = e || window.event;
 
-        //->获取当前选项卡中所有叫做ul的子元素中的第一个(页卡部分)
-        var oTabUl = utils.children(oTab, "ul")[0];
+            //->e.target||e.srcElement可以获取到当前点击的是那个元素(事件源->当前点击的是哪个元素)
+            var tar = e.target || e.srcElement;
 
-        //->获取每一个选项卡页卡部分中的所有的li
-        var oTabLis = utils.children(oTabUl);
+            //->如果tar是我们点击的这个页卡的li
+            if (tar.parentNode && tar.parentNode.className === "tabTitle") {
+                changeTab.call(tar);
+            }
+        };
 
-        //->分别给每一个li绑定点击事件
-        for (var k = 0; k < oTabLis.length; k++) {
-            oTabLis[k].onclick = changeTab;
-        }
-    }
+        function changeTab() {
+            utils.addClass(this, "select");
+            var siblingLi = utils.siblings(this);
+            for (var i = 0; i < siblingLi.length; i++) {
+                utils.removeClass(siblingLi[i], "select");
+            }
 
-    function changeTab() {
-        //this->当前点击的那个li
-
-        //1)先控制页卡区域的操作样式:给当前点击的这个li增加选中样式,然后在获取它的兄弟元素节点,让兄弟元素的选中样式都移除
-        utils.addClass(this, "select");
-        var siblingLi = utils.siblings(this);
-        for (var i = 0; i < siblingLi.length; i++) {
-            utils.removeClass(siblingLi[i], "select");
-        }
-
-        //2)控制内容区域的样式操作:
-        //->首先获取当前点击这个li的父亲的所有的弟弟元素(对应内容的三个div)
-        var divList = utils.nextAll(this.parentNode);
-
-        //->获取当前点击这个li的索引
-        var index = utils.getIndex(this);
-
-        //->循环三个div,让index索引对应的有选中的样式,而其余的没有选中的样式
-        for (i = 0; i < divList.length; i++) {
-            var curDiv = divList[i];
-            if (i === index) {
-                utils.addClass(curDiv, "select");
-            } else {
-                utils.removeClass(curDiv, "select");
+            var divList = utils.nextAll(this.parentNode), index = utils.getIndex(this);
+            for (i = 0; i < divList.length; i++) {
+                var curDiv = divList[i];
+                i === index ? utils.addClass(curDiv, "select") : utils.removeClass(curDiv, "select");
             }
         }
-    }
+    }();
 </script>
 </body>
 </html>

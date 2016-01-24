@@ -124,3 +124,74 @@ utils.siblings = function sibling(curEle) {
 utils.getIndex = function getIndex(curEle) {
     return this.prevAll(curEle).length;
 };
+
+/*--------------------------------------------------*/
+
+//hasClass:判断当前元素是否包含某个样式类名
+utils.hasClass = function hasClass(curEle, cName) {
+    var reg = new RegExp("(?:^| +)" + cName + "(?: +|$)");
+    return reg.test(curEle.className);
+};
+
+//addClass:给当前的元素增加样式类名
+utils.addClass = function addClass(curEle, cName) {
+    if (!this.hasClass(curEle, cName)) {//->首先判断当前的元素中是否已经存在cName这个样式名了,存在就不在增加了...
+        curEle.className += " " + cName;
+    }
+};
+
+//removeClass:给当前的元素移除某一个样式类名
+utils.removeClass = function removeClass(curEle, cName) {
+    if (this.hasClass(curEle, cName)) {//->首先判断当前的元素中是否已经存在cName这个样式名了,有的话才移除...
+        var reg = new RegExp("(?:^| +)" + cName + "(?: +|$)", "g");
+        curEle.className = curEle.className.replace(reg, " ");
+    }
+};
+
+/*--------------------------------------------------*/
+
+//children:获取当前元素下所有的元素子节点,如果传递了tag值,意思是在所有的子元素节点中在把标签名为tag的筛选出来
+utils.children = function children(curEle, tag) {
+    var nodeList = curEle.childNodes, ary = [];
+    for (var i = 0; i < nodeList.length; i++) {
+        var cur = nodeList[i];
+        if (cur.nodeType === 1) {
+            if (typeof tag !== "undefined") {
+                var reg = new RegExp("^" + tag + "$", "i");
+                reg.test(cur.tagName) ? ary[ary.length] = cur : null;
+                continue;
+            }
+            ary[ary.length] = cur;
+        }
+    }
+    return ary;
+};
+
+/*--------------------------------------------------*/
+
+//getElementsByClass:通过元素的样式类名,在指定的上下文中获取相关的元素
+utils.getElementsByClass = function getElementsByClass(strClass, context) {
+    context = context || document;
+    if ("getElementsByClassName" in document) {
+        return this.listToArray(context.getElementsByClassName(strClass));
+    }
+    var tagList = context.getElementsByTagName("*"), ary = [];
+    strClass = strClass.replace(/(^ +| +$)/g, "").split(/ +/);
+    for (var i = 0; i < tagList.length; i++) {
+        var curTag = tagList[i], curTagClass = curTag.className;
+        var flag = true;
+        for (var k = 0; k < strClass.length; k++) {
+            var reg = new RegExp("(?:^| +)" + strClass[k] + "(?: +|$)");
+            if (!reg.test(curTagClass)) {
+                flag = false;
+                break;
+            }
+        }
+        flag ? ary[ary.length] = curTag : null;
+    }
+    return ary;
+};
+
+
+//https://github.com/zhufengpeixun/zhufengDom.git
+//http://tool.css-js.com/
