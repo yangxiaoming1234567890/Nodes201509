@@ -36,12 +36,12 @@
             height: 100%;
         }
 
-        .box {
-            position: relative;
-            top: 100px;
-            left: 50%;
-            margin-left: -200px;
+        body{
+            border-top: 1px solid transparent;
+        }
 
+        .box {
+            margin: 100px auto;
             width: 400px;
             overflow: hidden;
         }
@@ -102,7 +102,7 @@
         var val = this.value.replace(/(^ +| +$)/g, "");//->获取文本框中的内容并且去除字符串的首尾空格
         searchList.style.display = val.length === 0 ? "none" : "block";
     };
-    
+
     //->使用事件委托给body绑定点击事件，通过事件源做不同的处理
     document.body.onclick = function (e) {
         e = e || window.event;
