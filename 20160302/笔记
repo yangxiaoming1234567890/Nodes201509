@@ -31,8 +31,42 @@
 
  ->起始行/首部/主体
  ->起始行:描述这个HTTP的基本请求
- ->首部:通用首部(请求个响应都有的) 请求首部  响应首部  扩展首部(自定义的) 实体首部(描述响应/请求内容的)
+ ->首部:通用首部(请求和响应都有的) 请求首部  响应首部  扩展首部(自定义的) 实体首部(描述响应/请求内容的)
  ->实体:一般很少见,请求或者响应的内容
+
+ [Headers]
+ General->通用头(Request/Response都有的)
+    Request URL:http://matchweb.sports.qq.com/kbs/hotMatchList?callback=getHotMatchList&_=1456903174906 请求的服务器详细地址
+    Request Method:GET 请求的方式,GET是到服务器获取内容,POST是向服务器发送内容...
+    Status Code:200 HTTP状态码  ok HTTP状态码描述
+    Remote Address:123.151.148.59:80 服务器的IP地址和端口号
+
+ Request Headers->
+    GET /kbs/hotMatchList?callback=getHotMatchList&_=1456903174906 HTTP/1.1
+    Host: matchweb.sports.qq.com
+    Connection: keep-alive
+    Pragma: no-cache
+    Cache-Control: no-cache
+    User-Agent: Mozilla/5.0...
+    Accept: */*
+    Referer: http://kbs.sports.qq.com/
+    Accept-Encoding: gzip, deflate, sdch
+    Accept-Language: zh-CN,zh;q=0.8
+    Cookie:
+
+ Response Headers->
+    HTTP/1.1 200 OK
+    Server: nginx/1.4.4-omg  当前服务器是用什么样的服务发布的(IIS、apache、nginx...)
+    Date: Wed, 02 Mar 2016 07:20:05 GMT  当前请求回来的服务器的时间,时间格式是英国的格林尼治时间
+    Content-Type: application/json  当前请求回来的数据的格式
+    Transfer-Encoding: chunked
+    Connection: keep-alive
+    Keep-Alive: timeout=120  当前是用了120ms请求回来的(整个HTTP的请求时间)
+    Vary: Accept-Encoding
+    X-Server-Ip: 10.248.116.169
+    X-Cached: EXPIRED
+    Content-Encoding: gzip
+
 
 3、HTTP状态码
  ->100初始化/正在请求  HTTP2.0已经删除了1xx系列的
@@ -65,22 +99,28 @@
  ->503 服务器并发数过多 (只能连接100个,过来200个,剩下的100个就会被告知503)
 
 
-4、HTTP请求
+4、HTTP请求方式
  ->get 从服务器获取
- ->post 向服务器发送
+ ->post 向服务器发送->注册页面:用户填完信息,有很多的信息,我们把这些信息都获取到,然后通过Ajax中的POST请求,在请求主体中把这些信息都传递给后台服务器,服务器把这些信息存储到数据库中("表单提交")
+
  ->put 增加
  ->delete 删除
  ->head、options、trace、connection、track...
 
  ->get系的特征(get、delete、head)
- 1、会把给服务器发送的数据放到url后面
+ 1、会把给服务器发送的数据放到url后面 ->http://matchweb.sports.qq.com/kbs/hotMatchList?callback=getHotMatchList&_=1456903174906  "?后面写的内容都是同过get请求传递给服务器的"
+
  2、有大小限制
     因为get系把数据都放到url里面，而浏览器会对url的长度有大小限制， 所以造成了get系对传输的数据大小有限制
     ie->2K
     firefox->7k
     chrome->8k
- 3、会被缓存
- 4、不安全,因为明文发送
+
+ 3、会被缓存(服务器和浏览器自带的缓存)
+   ->我们一般不用缓存,因为自带的缓存很多情况导致,第二次请求的内容一直和第一次一样,最新的内容请求不回来
+   ->如果想要快,我们做的所有的缓存都是自己单独用程序设计出来的而不是浏览器自带的缓存机制
+
+ 4、不安全,因为明文发送 ->在浏览器的控制台中我们可以查看到URL后面的参数值,所以不安全
 
  ->post系(post、put)
  1、会把给服务器发送的数据放到请求主体里
@@ -95,12 +135,6 @@
     post系设计的初衷是往服务器发送数据的,所以不需要缓存
 
  ->HEAD、DELETE这两个方法比较特殊：他们成功只返回202，不会返回200
-
-5、都有哪些可以请求外部的资源
- ->script
- ->img
- ->iframe
-
 
 
 $.ajax({
