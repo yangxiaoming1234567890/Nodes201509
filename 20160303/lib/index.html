@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册新用户</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        input {
+            display: block;
+            outline: none;
+            border: 1px solid #2B93D2;
+        }
+
+        .box {
+            margin: 20px auto;
+            padding: 20px;
+            width: 400px;
+            border: 1px dashed red;
+        }
+
+        .box h2 {
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .box div {
+            margin-top: 10px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .box div input {
+            padding: 0 10px;
+            width: 378px;
+            height: 35px;
+            line-height: 35px;
+        }
+
+        #userBtn {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        span {
+            display: block;
+        }
+
+        .box li {
+            height: 35px;
+            line-height: 35px;
+            border-bottom: 1px dashed #999;
+        }
+
+        .box li span {
+            float: left;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>注册成为珠峰培训会员</h2>
+
+    <div><input type="text" id="userName"/></div>
+    <div><input type="text" id="userAge"/></div>
+    <div><input type="submit" id="userBtn" value="立即注册"/></div>
+</div>
+
+<div class="box">
+    <ul id="boxList">
+
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    function ajax(type, url, data, callBack) {
+        var xhr = new XMLHttpRequest;
+        xhr.open(type, url, true);
+        xhr.onreadystatechange = function () {
+            var state = this.readyState;
+            if (state === 4 && /^2\d{2}$/.test(this.status)) {
+                var val = this.responseText;
+                callBack(JSON.parse(val));
+            }
+        };
+        xhr.send(data);
+    }
+
+    var boxList = document.getElementById("boxList");
+    function show() {
+        ajax("get", "http://localhost:1234/get?_=" + Math.random(), null, function (val) {
+            //->绑定数据
+            if (val && val.list && val.list.length > 0) {
+                var ary = val.list;
+                var str = "";
+                for (var i = 0; i < ary.length; i++) {
+                    var cur = ary[i];
+                    str += "<li>";
+                    str += "<span>" + cur.id + "</span>";
+                    str += "<span>" + cur.userName + "</span>";
+                    str += "<span>" + cur.userAge + "</span>";
+                    str += "<span class='boxDel' dataId='" + cur.id + "'>删除</span>";
+                    str += "</li>";
+                }
+                boxList.innerHTML = str;
+                delInfo();
+            }
+        });
+    }
+    show();
+
+    //->还需要做表单的验证(后期讲)
+    var userBtn = document.getElementById("userBtn"), userName = document.getElementById("userName"), userAge = document.getElementById("userAge");
+    userBtn.onclick = function () {
+        ajax("get", "http://localhost:1234/add?userName=" + userName.value + "&userAge=" + userAge.value + "&_=" + Math.random(), null, function (val) {
+            if (val && val.code === 0) {
+                var obj = val.info;
+                var oLi = document.createElement("li");
+                var str = "<span>" + obj.id + "</span><span>" + obj.userName + "</span><span>" + obj.userAge + "</span><span class='boxDel' dataId='" + obj.id + "'>删除</span>";
+                oLi.innerHTML = str;
+                boxList.appendChild(oLi);
+                delInfo();
+            }
+        });
+    };
+
+    function delInfo() {
+        var boxDel = boxList.getElementsByClassName("boxDel");
+        for (var i = 0; i < boxDel.length; i++) {
+            var cur = boxDel[i];
+            cur.index = i;
+            cur.onclick = function () {
+                var dataId = this.getAttribute("dataId");
+                var flag = window.confirm("确定要删除ID为" + dataId + "这一项内容吗?");
+                if (!flag) {
+                    return;
+                }
+                var _this = this;
+                ajax("get", "http://localhost:1234/del?id=" + dataId + "&_=" + Math.random(), null, function (val) {
+                    if (val && val.code == 0) {
+                        boxList.removeChild(_this.parentNode);
+                    }
+                });
+            }
+        }
+
+    }
+
+
+</script>
+</body>
+</html>
