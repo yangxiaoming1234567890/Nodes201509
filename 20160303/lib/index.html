@@ -86,82 +86,77 @@
     </ul>
 </div>
 
-
 <script type="text/javascript">
-    function ajax(type, url, data, callBack) {
-        var xhr = new XMLHttpRequest;
-        xhr.open(type, url, true);
-        xhr.onreadystatechange = function () {
-            var state = this.readyState;
-            if (state === 4 && /^2\d{2}$/.test(this.status)) {
-                var val = this.responseText;
-                callBack(JSON.parse(val));
-            }
-        };
-        xhr.send(data);
-    }
+    var comURL = "http://localhost:1001/";
+    var boxList = document.getElementById("boxList"), btnList = boxList.getElementsByClassName("delBtn");
 
-    var boxList = document.getElementById("boxList");
+    //->展示列表
     function show() {
-        ajax("get", "http://localhost:1234/get?_=" + Math.random(), null, function (val) {
-            //->绑定数据
-            if (val && val.list && val.list.length > 0) {
-                var ary = val.list;
-                var str = "";
-                for (var i = 0; i < ary.length; i++) {
-                    var cur = ary[i];
-                    str += "<li>";
-                    str += "<span>" + cur.id + "</span>";
-                    str += "<span>" + cur.userName + "</span>";
-                    str += "<span>" + cur.userAge + "</span>";
-                    str += "<span class='boxDel' dataId='" + cur.id + "'>删除</span>";
-                    str += "</li>";
-                }
-                boxList.innerHTML = str;
-                delInfo();
+        ajax(comURL + "getInfo?_=" + Math.random(), function (val) {
+            var str = "", ary = val.list;
+            for (var i = 0; i < ary.length; i++) {
+                var cur = ary[i];
+                str += "<li>";
+                str += "<span>" + cur.id + "</span>";
+                str += "<span>" + cur.userName + "</span>";
+                str += "<span>" + cur.userAge + "</span>";
+                str += "<span class='delBtn' userId='" + cur.id + "'>删除</span>";
+                str += "</li>";
             }
+            boxList.innerHTML = str;
+            delInfo();
         });
     }
     show();
 
-    //->还需要做表单的验证(后期讲)
-    var userBtn = document.getElementById("userBtn"), userName = document.getElementById("userName"), userAge = document.getElementById("userAge");
-    userBtn.onclick = function () {
-        ajax("get", "http://localhost:1234/add?userName=" + userName.value + "&userAge=" + userAge.value + "&_=" + Math.random(), null, function (val) {
-            if (val && val.code === 0) {
-                var obj = val.info;
-                var oLi = document.createElement("li");
-                var str = "<span>" + obj.id + "</span><span>" + obj.userName + "</span><span>" + obj.userAge + "</span><span class='boxDel' dataId='" + obj.id + "'>删除</span>";
-                oLi.innerHTML = str;
-                boxList.appendChild(oLi);
-                delInfo();
-            }
+    //->实现增加
+    function addInfo() {
+        var userName = document.getElementById("userName").value;
+        var userAge = document.getElementById("userAge").value;
+        ajax(comURL + "addInfo?userName=" + userName + "&userAge=" + userAge + "&_=" + Math.random(), function (val) {
+            var oLi = document.createElement("li");
+            oLi.innerHTML += "<span>" + val.id + "</span>";
+            oLi.innerHTML += "<span>" + val.userName + "</span>";
+            oLi.innerHTML += "<span>" + val.userAge + "</span>";
+            oLi.innerHTML += "<span class='delBtn' userId='" + val.id + "'>删除</span>";
+            boxList.appendChild(oLi);
+            delInfo();
         });
-    };
+    }
+    document.getElementById("userBtn").onclick = addInfo;
 
+    //->删除
     function delInfo() {
-        var boxDel = boxList.getElementsByClassName("boxDel");
-        for (var i = 0; i < boxDel.length; i++) {
-            var cur = boxDel[i];
-            cur.index = i;
+        for (var i = 0; i < btnList.length; i++) {
+            var cur = btnList[i];
             cur.onclick = function () {
-                var dataId = this.getAttribute("dataId");
-                var flag = window.confirm("确定要删除ID为" + dataId + "这一项内容吗?");
-                if (!flag) {
-                    return;
-                }
+                var flag = window.confirm("确认要删除本条信息吗?");
+                if (!flag) return;
+
+                var userId = this.getAttribute("userId");
                 var _this = this;
-                ajax("get", "http://localhost:1234/del?id=" + dataId + "&_=" + Math.random(), null, function (val) {
-                    if (val && val.code == 0) {
+                ajax(comURL + "delInfo?id=" + userId + "&_=" + Math.random(), function (val) {
+                    if (val.code == 0) {
                         boxList.removeChild(_this.parentNode);
                     }
                 });
             }
         }
-
     }
 
 
+    function ajax(url, callback) {
+        var xhr = new XMLHttpRequest;
+        xhr.open("get", url, true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && /^2\d{2}$/.test(xhr.status)) {
+                var val = xhr.responseText;
+                val = JSON.parse(val);
+                typeof callback === "function" ? callback(val) : null;
+            }
+        };
+        xhr.send(null);
+    }
 </script>
 </body>
 </html>

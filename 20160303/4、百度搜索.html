@@ -85,21 +85,23 @@
     searchInp.onfocus = searchInp.onkeyup = function () {
         var val = this.value.replace(/(^ +| +$)/g, "");
         if (val.length > 0) {
+            searchList.style.display = "block";
+            //->把百度后台返回的匹配数据展示在列表中
             $.ajax({
-                url: "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=" + val + "&_=" + Math.random(),
+                url: "http://suggestion.baidu.com/su?wd=" + val + "&_=" + Math.random(),
                 type: "get",
                 dataType: "jsonp",
                 jsonp: "cb",
-                jsonpCallback: "zhufeng",
+                jsonpCallback: "fn",
                 success: function (data) {
-                    data = data ? data["s"] : [];
-                    if (data.length === 0) return;
-                    var str = "";
-                    for (var i = 0; i < data.length; i++) {
-                        str += "<li><a href='javascript:;'>" + data[i] + "</a></li>";
+                    if (data) {
+                        var ary = data["s"];
+                        var str = "";
+                        for (var i = 0; i < ary.length; i++) {
+                            str += "<li><a href='javascript:;'>" + ary[i] + "</a></li>";
+                        }
+                        searchList.innerHTML = str;
                     }
-                    searchList.innerHTML = str;
-                    searchList.style.display = "block";
                 }
             });
         } else {
@@ -111,23 +113,18 @@
         e = e || window.event;
         e.target = e.target || e.srcElement;
 
-        //->如果事件源是#searchList下的a标签,我们让searchList隐藏，并且把当前点击这个a中的内容放到文本框中
         if (e.target.tagName.toLowerCase() === "a" && e.target.parentNode.parentNode.id === "searchList") {
             searchList.style.display = "none";
             searchInp.value = e.target.innerHTML;
             return;
         }
-
         searchList.style.display = "none";
     };
 
-    //->我们可以阻止一个容器中某些特殊性的元素，让其不在委托的范围内：我们只需要把这些不需要委托的阻止冒泡传播即可
     searchInp.onclick = function (e) {
         e = e || window.event;
         e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
     };
-
-
 </script>
 </body>
 </html>
