@@ -186,13 +186,22 @@
         for (var i = 0; i < data.length; i++) {
             var cur = data[i];
             var sex = cur.sex === 1 ? "男" : "女";
-            str += "<li>";
+            str += "<li num='" + cur.num + "'>";
             str += "<span>" + cur.num + "</span>";
             str += "<span>" + sex + "</span>";
             str += "<span>" + cur.score + "</span>";
             str += "</li>";
         }
-        document.getElementById("dataList").innerHTML = str;
+        var dataList = document.getElementById("dataList");
+        dataList.innerHTML = str;
+
+        var oLis = dataList.getElementsByTagName("li");
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].onclick = function () {
+                //window.location.href = "detail.html"; //->在当前窗口打开新的页面
+                window.open("detail.html?num=" + this.getAttribute("num"));//->在一个新的窗口打开新页面
+            }
+        }
     }
 
     //->绑定分页页码数据

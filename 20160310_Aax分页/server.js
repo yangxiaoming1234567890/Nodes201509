@@ -39,6 +39,34 @@ var server = http.createServer(function (request, response) {
         response.end(con);
         return;
     }
+
+    //->把详细页也进行渲染
+    if (pathname === "/detail.html") {
+        var con = fs.readFileSync("./detail.html", "utf8");
+        response.writeHead(200, {'content-type': 'text/html'});
+        response.end(con);
+        return;
+    }
+
+    //->接口:告诉我num的值,我到data.json中把num对应的这条数据返回给客户端
+    if (pathname === "/detailInfo") {
+        var num = pathquery.num;
+        con = fs.readFileSync("./data.json", "utf8");
+        con = JSON.parse(con);
+
+        var obj = null;
+        for (var i = 0; i < con.length; i++) {
+            var cur = con[i];
+            if (cur.num == num) {
+                obj = cur;
+                break;
+            }
+        }
+
+        response.writeHead(200, {'content-type': 'application/json'});
+        response.end(JSON.stringify(obj));
+        return;
+    }
 });
 server.listen(8888);
 
