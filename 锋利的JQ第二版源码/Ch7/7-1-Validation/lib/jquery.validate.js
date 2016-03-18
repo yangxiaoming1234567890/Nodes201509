@@ -1109,8 +1109,8 @@ $.format = $.validator.format;
 
 })(jQuery);
 
-// ajax mode: abort
-// usage: $.ajax({ mode: "abort"[, port: "uniqueport"]});
+// ajax-课堂笔记 mode: abort
+// usage: $.ajax-课堂笔记({ mode: "abort"[, port: "uniqueport"]});
 // if mode:"abort" is used, the previous request on that port (port can be undefined) is aborted via XMLHttpRequest.abort()
 ;(function($) {
 	var pendingRequests = {};
@@ -1126,7 +1126,7 @@ $.format = $.validator.format;
 			}
 		});
 	} else {
-		// Proxy ajax
+		// Proxy ajax-课堂笔记
 		var ajax = $.ajax;
 		$.ajax = function(settings) {
 			var mode = ( "mode" in settings ? settings : $.ajaxSettings ).mode,

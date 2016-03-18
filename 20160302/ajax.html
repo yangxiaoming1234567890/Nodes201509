@@ -8,7 +8,7 @@
 <!--
     通过webStorm运行我们的页面,会默认的把我们的电脑当做服务器,把当前项目当做一个产品发布
     http://localhost:63342/%E7%AC%AC%E4%B9%9D%E6%9C%9F/20160302/ajax.html ->当前页面的地址
-    http://localhost:63342/%E7%AC%AC%E4%B9%9D%E6%9C%9F/20160302/json/data.txt ->当前我们要请求的数据地址
+    http://localhost:63342/%E7%AC%AC%E4%B9%9D%E6%9C%9F/20160302/json/data.json ->当前我们要请求的数据地址
 -->
 
 <script type="text/javascript">
@@ -45,6 +45,7 @@
             var val = this.responseText;//->获取响应的文本内容this.responseXML 获取响应的XML格式内容
             console.log(val);
         }
+
     };
 
     //->发送,get请求不需要传内容,因为它给服务器的内容都是通过URL后面拼接传递给后台的;但是如果是POST请求,我们需要把传递给后台的内容放在send中传递过去->send中存放的是请求主体的内容(字符串格式的)

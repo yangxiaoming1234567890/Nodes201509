@@ -54,4 +54,4 @@ utils.offset = function (curEle) {
     return {top: t, left: l};
 };
 
-//珠峰最新版DOM库的gitHub地址:https://github.com/zhufengpeixun/zhufengDom.git
+//珠峰最新版DOM库的gitHub地址:https://github.com/zhufengpeixun/zhufengDom.git.txt

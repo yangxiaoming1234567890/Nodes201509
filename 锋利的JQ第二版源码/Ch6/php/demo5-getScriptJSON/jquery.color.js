@@ -415,7 +415,7 @@
 	color.fn.parse.prototype = color.fn;
 
 	// hsla conversions adapted from:
-	// http://www.google.com/codesearch/p#OAMlx_jo-ck/src/third_party/WebKit/Source/WebCore/inspector/front-end/Color.js&d=7&l=193
+	// http://www.google.com/codesearch/p#OAMlx_jo-ck/src/third_party/WebKit/Source/WebCore/inspector/front-end/Color.json&d=7&l=193
 
 	function hue2rgb( p, q, h ) {
 		h = ( h + 1 ) % 1;

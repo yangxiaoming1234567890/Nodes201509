@@ -193,5 +193,5 @@ utils.getElementsByClass = function getElementsByClass(strClass, context) {
 };
 
 
-//https://github.com/zhufengpeixun/zhufengDom.git
-//http://tool.css-js.com/
+//https://github.com/zhufengpeixun/zhufengDom.git.txt
+//http://tool.css-json.com/

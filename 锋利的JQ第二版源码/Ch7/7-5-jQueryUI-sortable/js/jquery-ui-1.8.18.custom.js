@@ -599,7 +599,7 @@ $.Widget.prototype = {
  * http://docs.jquery.com/UI/Mouse
  *
  * Depends:
- *	jquery.ui.widget.js
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -1059,9 +1059,9 @@ if ( !$.offset.setOffset ) {
  * http://docs.jquery.com/UI/Draggables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -1884,10 +1884,10 @@ $.ui.plugin.add("draggable", "zIndex", {
  * http://docs.jquery.com/UI/Droppables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- *	jquery.ui.mouse.js
- *	jquery.ui.draggable.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.draggable.json
  */
 (function( $, undefined ) {
 
@@ -2180,9 +2180,9 @@ $.ui.ddmanager = {
  * http://docs.jquery.com/UI/Resizables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -2988,9 +2988,9 @@ var isNumber = function(value) {
  * http://docs.jquery.com/UI/Selectables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -3255,9 +3255,9 @@ $.extend($.ui.selectable, {
  * http://docs.jquery.com/UI/Sortables
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -4336,8 +4336,8 @@ $.extend($.ui.sortable, {
  * http://docs.jquery.com/UI/Accordion
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -4947,9 +4947,9 @@ $.extend( $.ui.accordion, {
  * http://docs.jquery.com/UI/Autocomplete
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- *	jquery.ui.position.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
+ *	jquery.ui.position.json
  */
 (function( $, undefined ) {
 
@@ -5392,8 +5392,8 @@ $.extend( $.ui.autocomplete, {
  * http://docs.jquery.com/UI/Menu
  *
  * Depends:
- *	jquery.ui.core.js
- *  jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *  jquery.ui.widget.json
  */
 (function($) {
 
@@ -5571,8 +5571,8 @@ $.widget("ui.menu", {
  * http://docs.jquery.com/UI/Button
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -5985,13 +5985,13 @@ $.widget( "ui.buttonset", {
  * http://docs.jquery.com/UI/Dialog
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
- *  jquery.ui.button.js
- *	jquery.ui.draggable.js
- *	jquery.ui.mouse.js
- *	jquery.ui.position.js
- *	jquery.ui.resizable.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
+ *  jquery.ui.button.json
+ *	jquery.ui.draggable.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.position.json
+ *	jquery.ui.resizable.json
  */
 (function( $, undefined ) {
 
@@ -6863,9 +6863,9 @@ $.extend($.ui.dialog.overlay.prototype, {
  * http://docs.jquery.com/UI/Slider
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.mouse.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.mouse.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -7525,8 +7525,8 @@ $.extend( $.ui.slider, {
  * http://docs.jquery.com/UI/Tabs
  *
  * Depends:
- *	jquery.ui.core.js
- *	jquery.ui.widget.js
+ *	jquery.ui.core.json
+ *	jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -7629,7 +7629,7 @@ $.widget( "ui.tabs", {
 		this.anchors.each(function( i, a ) {
 			var href = $( a ).attr( "href" );
 			// For dynamically created HTML that contains a hash as href IE < 8 expands
-			// such href to the full page url with hash and then misinterprets tab as ajax.
+			// such href to the full page url with hash and then misinterprets tab as ajax-课堂笔记.
 			// Same consideration applies for an added tab with a fragment identifier
 			// since a[href=#fragment-identifier] does unexpectedly not match.
 			// Thus normalize href attribute...
@@ -8283,7 +8283,7 @@ $.extend( $.ui.tabs.prototype, {
  * http://docs.jquery.com/UI/Datepicker
  *
  * Depends:
- *	jquery.ui.core.js
+ *	jquery.ui.core.json
  */
 (function( $, undefined ) {
 
@@ -10109,8 +10109,8 @@ window['DP_jQuery_' + dpuuid] = $;
  * http://docs.jquery.com/UI/Progressbar
  *
  * Depends:
- *   jquery.ui.core.js
- *   jquery.ui.widget.js
+ *   jquery.ui.core.json
+ *   jquery.ui.widget.json
  */
 (function( $, undefined ) {
 
@@ -10981,7 +10981,7 @@ $.extend($.easing,
  * http://docs.jquery.com/UI/Effects/Blind
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11030,7 +11030,7 @@ $.effects.blind = function(o) {
  * http://docs.jquery.com/UI/Effects/Bounce
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11108,7 +11108,7 @@ $.effects.bounce = function(o) {
  * http://docs.jquery.com/UI/Effects/Clip
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11162,7 +11162,7 @@ $.effects.clip = function(o) {
  * http://docs.jquery.com/UI/Effects/Drop
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11212,7 +11212,7 @@ $.effects.drop = function(o) {
  * http://docs.jquery.com/UI/Effects/Explode
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11291,7 +11291,7 @@ $.effects.explode = function(o) {
  * http://docs.jquery.com/UI/Effects/Fade
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11323,7 +11323,7 @@ $.effects.fade = function(o) {
  * http://docs.jquery.com/UI/Effects/Fold
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11379,7 +11379,7 @@ $.effects.fold = function(o) {
  * http://docs.jquery.com/UI/Effects/Highlight
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11429,7 +11429,7 @@ $.effects.highlight = function(o) {
  * http://docs.jquery.com/UI/Effects/Pulsate
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11480,7 +11480,7 @@ $.effects.pulsate = function(o) {
  * http://docs.jquery.com/UI/Effects/Scale
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11658,7 +11658,7 @@ $.effects.size = function(o) {
  * http://docs.jquery.com/UI/Effects/Shake
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11715,7 +11715,7 @@ $.effects.shake = function(o) {
  * http://docs.jquery.com/UI/Effects/Slide
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 
@@ -11765,7 +11765,7 @@ $.effects.slide = function(o) {
  * http://docs.jquery.com/UI/Effects/Transfer
  *
  * Depends:
- *	jquery.effects.core.js
+ *	jquery.effects.core.json
  */
 (function( $, undefined ) {
 

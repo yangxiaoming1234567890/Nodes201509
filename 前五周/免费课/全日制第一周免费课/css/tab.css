@@ -3,7 +3,7 @@ body, div, ul, li {
     padding: 0;
     font-size: 14px;
 
-    /*½ûÖ¹¹È¸èµÈwebkitÄÚºËµÄä¯ÀÀÆ÷ÖÐ,½ûÖ¹ÓÃ»§Ñ¡ÖÐÎÄ×Ö*/
+    /*ï¿½ï¿½Ö¹ï¿½È¸ï¿½ï¿½webkitï¿½ÚºËµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ö¹ï¿½Ã»ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     -webkit-user-select: none;
 }
 
@@ -17,7 +17,7 @@ ul, li {
 }
 
 #tab ul {
-    /*overflow: hidden; Çå³ý×ÓÔªËØµÄ¸¡¶¯¶Ô×Ô¼ºµÄÓ°Ïì*/
+    /*overflow: hidden; ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ØµÄ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ó°ï¿½ï¿½*/
     position: relative;
     top: 1px;
 }
@@ -45,7 +45,7 @@ ul, li {
     line-height: 150px;
     text-align: center;
     border: 1px solid green;
-    clear: both; /*Çå³ýÉÏÃæÔªËØµÄ¸¡¶¯¶Ô×Ô¼ºµÄÓ°Ïì*/
+    clear: both; /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôªï¿½ØµÄ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Ó°ï¿½ï¿½*/
 }
 
 #tab div.select {

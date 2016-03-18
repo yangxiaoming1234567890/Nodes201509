@@ -489,7 +489,7 @@ jQuery.extend({
 		}
 	},
 
-	// See test/unit/core.js for details concerning isFunction.
+	// See test/unit/core.json for details concerning isFunction.
 	// Since version 1.3, DOM methods and functions like alert
 	// aren't supported. They return false on IE (#2968).
 	isFunction: function( obj ) {
@@ -569,7 +569,7 @@ jQuery.extend({
 		}
 
 		// Make sure the incoming data is actual JSON
-		// Logic borrowed from http://json.org/json2.js
+		// Logic borrowed from http://json.org/json2.json
 		if ( rvalidchars.test( data.replace( rvalidescape, "@" )
 			.replace( rvalidtokens, "]" )
 			.replace( rvalidbraces, "")) ) {
@@ -6699,7 +6699,7 @@ var r20 = /%20/g,
 	_load = jQuery.fn.load,
 
 	/* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
+	 * 1) They are useful to introduce custom dataTypes (see ajax-课堂笔记/jsonp.json for an example)
 	 * 2) These are called:
 	 *    - BEFORE asking for a transport
 	 *    - AFTER param serialization (s.data is a string if s.processData is true)
@@ -6816,7 +6816,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 	return selection;
 }
 
-// A special extend for ajax options
+// A special extend for ajax-课堂笔记 options
 // that takes "flat" options (not to be deep extended)
 // Fixes #9887
 function ajaxExtend( target, src ) {
@@ -7509,7 +7509,7 @@ function buildParams( prefix, obj, traditional, add ) {
 }
 
 // This is still on the jQuery object... for now
-// Want to move this to jQuery.ajax some day
+// Want to move this to jQuery.ajax-课堂笔记 some day
 jQuery.extend({
 
 	// Counter for holding the number of active queries
@@ -7521,7 +7521,7 @@ jQuery.extend({
 
 });
 
-/* Handles responses to an ajax request:
+/* Handles responses to an ajax-课堂笔记 request:
  * - sets all responseXXX fields accordingly
  * - finds the right dataType (mediates between content-type and expected dataType)
  * - returns the corresponding response
@@ -7947,7 +7947,7 @@ if ( jQuery.support.ajax ) {
 
 					// Do send the request
 					// This may raise an exception which is actually
-					// handled in jQuery.ajax (so no try/catch here)
+					// handled in jQuery.ajax-课堂笔记 (so no try/catch here)
 					xhr.send( ( s.hasContent && s.data ) || null );
 
 					// Listener

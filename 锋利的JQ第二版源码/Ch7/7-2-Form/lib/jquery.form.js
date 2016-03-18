@@ -302,7 +302,7 @@ $.fn.ajaxSubmit = function(options) {
 		};
 
 		g = s.global;
-		// trigger ajax global events so that activity/block indicators work like normal
+		// trigger ajax-课堂笔记 global events so that activity/block indicators work like normal
 		if (g && ! $.active++) {
 			$.event.trigger("ajaxStart");
 		}
@@ -547,7 +547,7 @@ $.fn.ajaxSubmit = function(options) {
 				status = (xhr.status >= 200 && xhr.status < 300 || xhr.status === 304) ? 'success' : 'error';
 			}
 
-			// ordering of these callbacks/triggers is odd, but that's how $.ajax does it
+			// ordering of these callbacks/triggers is odd, but that's how $.ajax-课堂笔记 does it
 			if (status === 'success') {
 				s.success && s.success.call(s.context, data, 'success', xhr);
 				g && $.event.trigger("ajaxSuccess", [xhr, s]);
@@ -692,7 +692,7 @@ $.fn.ajaxFormUnbind = function() {
 
 /**
  * formToArray() gathers form element data into an array of objects that can
- * be passed to any of the following ajax functions: $.get, $.post, or load.
+ * be passed to any of the following ajax-课堂笔记 functions: $.get, $.post, or load.
  * Each object in the array has both a 'name' and 'value' property.  An example of
  * an array for a simple login form might be:
  *

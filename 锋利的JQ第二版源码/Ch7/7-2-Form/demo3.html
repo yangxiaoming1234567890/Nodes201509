@@ -10,7 +10,7 @@
 		 $('#test').click(function(){
               var queryString = $('#myForm').formSerialize();
               alert(queryString);
-              // 组装的数据可以用于 $.get, $.post, $.ajax ...
+              // 组装的数据可以用于 $.get, $.post, $.ajax-课堂笔记 ...
               $.post('demo.php', queryString ,function(data){
                   $('#output1').html("提交成功！欢迎下次再来！").show();      
               }); 
